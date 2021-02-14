@@ -168,7 +168,7 @@ class Classification:
 
     
 
-    def classification(self, X, y, model, standardize = True):
+    def classification(self, X, y, model, standardize = True, n_folds = 10):
         """ It calculates metrics for classification prediction.
         
         Parameters
@@ -184,6 +184,9 @@ class Classification:
                 
             standardize : boolean (default = True)
                 whether or not to standardize the features
+                
+            n_folds : int (default = 10)
+                how many folders to divide data to cross-validation
         
         Returns
         -------
@@ -194,8 +197,6 @@ class Classification:
             df_cm : list of array
                 list containing the confusion matrices
         """
-        
-        n_folds = 10
                 
         col1 = ["general", "balanced", "perclass"]
         

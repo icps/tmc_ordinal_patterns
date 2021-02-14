@@ -73,26 +73,13 @@ def framework_geolife(segmentation, motion, op, classification):
     if classification == True:
         print("----- CLASSIFYING")
 
-        knn     = KNeighborsClassifier(n_neighbors = 2)
-        
-        svm_r   = SVC(kernel = "rbf")
-        svm_l   = SVC(kernel = "linear")
-        
-        dt      = DecisionTreeClassifier(random_state = 321)
-        
-        trees   = 50
-        rf      = RandomForestClassifier(n_estimators = trees, random_state = 321, n_jobs = -1)
-        xgboost = XGBClassifier(n_estimators = trees, random_state = 321, n_jobs = -1)
-                
-        models  = [knn, svm_r, svm_l, dt, rf, xgboost]
-        
-        for model in models:
+        model = KNeighborsClassifier(n_neighbors = 2)
 
-            print("CLASSIFIER: {}".format(type(model).__name__))
-            
-            op = OPClassification(op_values, motion_features, folder_op, folder_features, 
-                                    folder_classification, model, op_features) 
-            op.classification()
+        print("CLASSIFIER: {}".format(type(model).__name__))
+
+        op = OPClassification(op_values, motion_features, folder_op, folder_features, 
+                                folder_classification, model, op_features) 
+        op.classification(n_folds = 2)
     
         
         

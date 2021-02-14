@@ -241,13 +241,14 @@ class OPClassification:
                     
         
                     
-    def classification(self):
+    def classification(self, n_folds):
         """ It calls the classification pipeline: join the dataset and classify it.
         Also, it saves the classification results in the chosen folder.
         
         Parameters
         ----------
-            no value
+            n_folds : int
+                how many folds to divide data to cross-validation
                 
         Returns
         -------
@@ -266,8 +267,7 @@ class OPClassification:
             
             clf         = Classification()
             standardize = True
-            pca         = False                     
-            df, cm      = clf.classification(X, y, self.model, standardize)
+            df, cm      = clf.classification(X, y, self.model, standardize, n_folds)
             
             # save data
             filename = "METRICS_" + str(parameter) + ".csv"
