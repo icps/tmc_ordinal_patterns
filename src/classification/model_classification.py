@@ -254,22 +254,7 @@ class Classification:
         
         # printing                
         print("GENERAL METRICS:")    
-        print(df.loc[:, ('general', 'mean')])
-        
-        acc_std = np.std(df.loc["Accuracy", 'general'][:-1])
-        
-        str1 = "{:.6} (-+ {:.4})".format(df.loc["Accuracy", ('general', 'mean')], 
-                                       acc_std)
-                                              
-        print(str1)
-        
-        f1_std = np.std(df.loc["F1", 'general'][:-1])
-        
-        str2 = "{:.6} (-+ {:.4})".format(df.loc["F1", ('general', 'mean')], 
-                                       f1_std)
-                                              
-        print(str2)
-        
+        print(df.loc[:, ('general', 'mean')])        
         
         return df, df_cm
         

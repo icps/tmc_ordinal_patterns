@@ -267,7 +267,7 @@ class OPClassification:
             clf         = Classification()
             standardize = True
             pca         = False                     
-            df, cm      = clf.classification(X, y, self.model, standardize, pca)
+            df, cm      = clf.classification(X, y, self.model, standardize)
             
             # save data
             filename = "METRICS_" + str(parameter) + ".csv"

@@ -73,15 +73,13 @@ class MotionFeaturesExtraction:
         
         ## Get the path to the transportation mode files (all of them)
         for transport in transportation:
-            query = transport + "*.csv"
+            query               = transport + "*.csv"
             user_transportation = get_files(folder_segments, query, True)
-            segment_files = list(chain(segment_files, user_transportation))
-
-        n = len(segment_files)
+            segment_files       = list(chain(segment_files, user_transportation))
         
-        for enum, segment in enumerate(segment_files):
-            
-            print("{:04d} of {} -- {}".format(enum, n, segment))
+        print("Processing {} segments...".format(len(segment_files)))
+        
+        for segment in segment_files:
             
             df_features = GeoLifeFeaturesExtraction.get_features(segment)
                                 
