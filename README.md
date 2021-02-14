@@ -11,9 +11,17 @@ In this work, we propose the use of a feature retained from the Ordinal Pattern 
 The proposed feature presents better accuracy results than Permutation Entropy and Statistical Complexity, even when these two are combined. 
 This is the first work, to the best of our knowledge, that uses Information Theory quantifiers to transportation mode classification, showing that it is a feasible approach to this kind of problem.
 
-The paper is available at: _link_
+The paper is available at: https://arxiv.org/abs/2007.08687
 
-If you find this code useful, please consider citing our paper: _bib citation_
+If you find this code useful, please consider citing our paper: 
+
+```
+@article{cardoso2020leveraging,
+  title={Leveraging the Self-Transition Probability of Ordinal Pattern Transition Graph for Transportation Mode Classification},
+  author={Cardoso-Pereira, I and Borges, JB and Barros, PH and Loureiro, AF and Rosso, OA and Ramos, HS},
+  journal={arXiv preprint arXiv:2007.08687},
+  year={2020}}
+```
 
 ## Framework Overview
 
@@ -45,11 +53,11 @@ This code is tested on Linux Ubuntu 18.04.03 and Debian 10. We use Python (versi
 Note that our code is not developed focused on speed. Several enhancements can be made on this matter.
 
 
-Additionally, it is necessary to download the GeoLife dataset in this [link](https://www.microsoft.com/en-us/download/details.aspx?id=52367). Move the folder called `Data/` into the project folder `./db/GeoLife/`.
+Additionally, it is necessary to download the GeoLife dataset in this [link](https://www.microsoft.com/en-us/download/details.aspx?id=52367). Move the folder called `Data/` into the project folder `db/GeoLife/`.
 
 ### Project File Structure
 
-- Please create a folder called `db/GeoLife/` under our main folder and put the `Data/` folder from GeoLife dataset;
+- Please put the `Data/` folder from GeoLife dataset under the folder called `db/GeoLife/`;
   - As you ran each step of our framework, new folders to save the files will be created in `db/` folder, such as `segments/` (to save the segmented trajectories), `motion_features/` (to save the features extracted from the segments), `op_features/` (to save the OP transformation), and `classification_<current_date>/` (to save the classification results; the current date is added so the classification results are not override.
   
 - The `src/` folder contains the following folders:
@@ -65,7 +73,11 @@ Additionally, it is necessary to download the GeoLife dataset in this [link](htt
 
 As the full experiment can take a few days to run completely, we recommend you to first execute the demo version, that follows a procedure very similar to the real experiment. To this, you can run the following code:
 
-**TODO: add example**
+```
+python example.py
+```
+
+The running process takes around 2 minutes to finish the whole pipeline of our framework in a little snippet of the GeoLife dataset. All the results will be saved in the folder `db/example/`.
 
 ## Support
 
