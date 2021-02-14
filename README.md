@@ -1,5 +1,4 @@
 # Leveraging the Self-Transition Probability of Ordinal Patterns Transition Network for Transportation Mode Identification Based on GPS Data
-------
 
 ## Abstract
 
