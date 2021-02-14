@@ -77,7 +77,7 @@ As the full experiment can take a few days to run completely, we recommend you t
 python example.py
 ```
 
-The running process takes around 2 minutes to finish the whole pipeline of our framework in a little snippet of the GeoLife dataset. All the results will be saved in the folder `db/example/`.
+The running process takes around 2 minutes to finish the whole pipeline of our framework in a little snippet of the GeoLife dataset. All the results will be saved in the folder `db/GeoLife/example/`.
 
 ## Support
 
