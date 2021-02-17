@@ -85,7 +85,7 @@ class OPClassification:
         D, tau        = parameter
         op_values     = "_D" + str(D) + "_t" + str(tau) + ".csv"
         features_name = [m + op_values for m in self.motion_features]
-        # ex: 'bearing_D3_t1.csv'
+        # ex: 'distance_D3_t1.csv'
 
         X = pd.DataFrame()
         y = pd.DataFrame()    
@@ -95,31 +95,31 @@ class OPClassification:
         for transport in transportation:
             
             # path to op transformation files
-            # ex: query      = 'op_bus_bearing_D3_t1.csv'
-            # ex: op_files = 'db/GeoLife/op_bus_bearing_D3_t1.csv'
+            # ex: query      = 'op_bus_distance_D3_t1.csv'
+            # ex: op_files = 'db/GeoLife/op_features/op_bus_distance_D3_t1.csv'
             file_name  = "op_" + transport + "_"
             query      = [file_name + f for f in features_name] 
-            op_files = [self.folder_op + q for q in query]
+            op_files   = [self.folder_op + q for q in query]
                                     
             df_transport_op = pd.DataFrame()            
             
-            for file in op_files:                
+            for file in op_files:      
                 op_csv = pd.read_csv(file, usecols = self.op_features)
                 op_csv = op_csv[self.op_features] # to assure order
 
                 # axis = 1 is by column, axis = 0 is by rows
                 concat           = [df_transport_op, op_csv]
                 df_transport_op  = pd.concat(concat, axis = 1, ignore_index = True)
-            
+                df_transport_op  = df_transport_op.dropna()
                 
             # features
-            concat1   = [X, df_transport_op]
-            X         = pd.concat(concat1, axis = 0, ignore_index = True)
+            concat1    = [X, df_transport_op]
+            X          = pd.concat(concat1, axis = 0, ignore_index = True)
        
             # labels
             op_class   = pd.DataFrame([transport] * len(df_transport_op))
             concat2    = [y, op_class]
-            y          = pd.concat(concat2, axis = 0, ignore_index = True)            
+            y          = pd.concat(concat2, axis = 0, ignore_index = True) 
                 
             
         n = len(X.columns)
@@ -128,7 +128,7 @@ class OPClassification:
         return X, y
         
 
-    def _build_dataset(self, parameter):
+    def _build_dataset(self, parameter, transports):
         """ Only for GeoLife dataset. Get the transportation mode set to classify
         based on previous works (helps comparing the results)
         
@@ -148,12 +148,13 @@ class OPClassification:
         """
 
             
-        transports = ["bus", "car", "taxi", "walk", "bike"]
+#         transports = ["bus", "car", "taxi", "walk", "bike"]
         
         X, y       = self._get_data(transports, parameter)
-        
-        y          = y.replace(to_replace = "car", value = "driving")
-        y          = y.replace(to_replace = "taxi", value = "driving")
+            
+        if "car" in transports or "taxi" in transports:
+            y          = y.replace(to_replace = "car", value = "driving")
+            y          = y.replace(to_replace = "taxi", value = "driving")
         
         
         print("TRANSPORTATION MODE: ", transports)
@@ -241,7 +242,7 @@ class OPClassification:
                     
         
                     
-    def classification(self, n_folds):
+    def classification(self, n_folds, transports):
         """ It calls the classification pipeline: join the dataset and classify it.
         Also, it saves the classification results in the chosen folder.
         
@@ -263,7 +264,7 @@ class OPClassification:
             print("OP PARAMETERS: {}".format(str(parameter)))
             print("FEATURES: {}".format(str(self.motion_features)))
                                     
-            X, y        = self._build_dataset(parameter)
+            X, y        = self._build_dataset(parameter, transports)
             
             clf         = Classification()
             standardize = True

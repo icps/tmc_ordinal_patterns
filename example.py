@@ -79,7 +79,9 @@ def framework_geolife(segmentation, motion, op, classification):
 
         op = OPClassification(op_values, motion_features, folder_op, folder_features, 
                                 folder_classification, model, op_features) 
-        op.classification(n_folds = 2)
+
+        n_folds = 2
+        op.classification(n_folds, transportation)
     
         
         

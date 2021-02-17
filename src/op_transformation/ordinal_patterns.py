@@ -298,11 +298,11 @@ class OPTransformation:
             itf                = InformationTheoryFeatures(prob)
             
             # Permutation Entropy
-            pe                 = itf.permutation_entropy(histogram, normalized = False)
+            pe                 = itf.permutation_entropy(histogram, normalized = True)
             feature_list.append(pe)
                 
             # Statistical Complexity
-            sc                 = itf.statistical_complexity(histogram, entropy = pe)
+            sc                 = itf.statistical_complexity(histogram, pe)
             feature_list.append(sc) 
             
             

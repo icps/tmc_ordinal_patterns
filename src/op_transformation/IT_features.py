@@ -38,7 +38,6 @@ class InformationTheoryFeatures:
         """
         if self.prob == False:
             probs = [x/sum(op) for x in op]
-            
         else:
             probs = self.prob
         
@@ -65,16 +64,13 @@ class InformationTheoryFeatures:
         
         probs = self._get_probs(op)
         
-        entropy_array = []
-        
+        pe  = 0
         for p in probs:
             if p > 0:
-                entropy_array.append(p*math.log2(p))
-                
-        pe = -sum(entropy_array)
+                pe -= p*math.log(p)
         
         if (normalized == True):
-            pe = pe/math.log2(len(probs))
+            pe = pe/math.log(len(probs))
             
         return pe
         
@@ -111,7 +107,7 @@ class InformationTheoryFeatures:
         pe_pu =  self.permutation_entropy(P_u)/2
         pe_op = self.permutation_entropy(probs)/2
         
-        aux = [(x + y)/2 for x, y in zip(probs, P_u)]
+        aux      = [(x + y)/2 for x, y in zip(probs, P_u)]
         pe_op_pu = self.permutation_entropy(aux)
         
         JS = pe_op_pu - pe_op - pe_pu

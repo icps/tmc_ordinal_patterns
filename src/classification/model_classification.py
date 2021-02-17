@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from itertools import product
 
-from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import StratifiedKFold
 
