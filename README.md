@@ -63,6 +63,8 @@ Additionally, it is necessary to download the GeoLife dataset in this [link](htt
   
 - The `main.py` file run all steps needed to the experiments. It may take some days to run. Also, you can run each step separately, given that you already have the needed data (e.g., you can apply the OP transformation if you already have the motion_features). To change which step will run, open the file and change the code in the main function (lines 122 to 125) to _True_ in the step you want to run.
 
+Additionally, we provide the notebook `plot.ipynb` to plot the results as presented in the article. It is important to pay attention when using this script, however, since the folder name will not be the same as written in it.
+
 ## Usage example
 
 As the full experiment can take a few days to run completely, we recommend you to first execute the demo version, that follows a procedure very similar to the real experiment. To this, you can run the following code:
