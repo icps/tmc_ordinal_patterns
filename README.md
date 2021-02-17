@@ -2,14 +2,8 @@
 
 ## Abstract
 
-The analysis of GPS trajectories is a well-studied problem in Urban Computing and has been used to track people. 
-Analyzing people mobility and identifying the transportation mode used by them is essential for cities that want to reduce traffic jams and travel time between their points, thus helping to improve the quality of life of citizens. The trajectory data of a moving object is represented by a discrete collection of points through time, i.e., a time series. 
-Regarding its interdisciplinary and broad scope of real-world applications, it is evident the need of extracting knowledge from time series data. 
-Mining this type of data, however, faces several complexities due to its unique properties. 
-Different representations of data may overcome this. 
-In this work, we propose the use of a feature retained from the Ordinal Pattern Transition Graph, called the probability of self-transition for transportation mode classification. 
-The proposed feature presents better accuracy results than Permutation Entropy and Statistical Complexity, even when these two are combined. 
-This is the first work, to the best of our knowledge, that uses Information Theory quantifiers to transportation mode classification, showing that it is a feasible approach to this kind of problem.
+Analysing people mobility and identifying the transportation mode used by them is essential for cities that want to reduce traffic jams and travel time between their points, thus helping to improve the quality of life of citizens. Mining this type of data, however, faces several complexities due to its unique properties. In this work, we propose the use of Information Theory quantifiers retained from the Ordinal Patterns (OP) transformation, for transportation mode identification. As an initial exploration, our results show that OP satisfactorily characterises the trajectories. Moreover, in this scenario, the characteristics of OP transformation can be advantageous, such as its simplicity, robustness, and speed. 
+
 
 The paper is available at: https://arxiv.org/abs/2007.08687
 
