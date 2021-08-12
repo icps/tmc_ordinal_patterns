@@ -254,7 +254,7 @@ class Classification:
         
         # printing                
         print("GENERAL METRICS:")    
-        print(df.loc[:, ('general', 'mean')])        
+        print(df.loc[:, ('general', 'mean')])    
         
         return df, df_cm
         

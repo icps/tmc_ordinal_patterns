@@ -6,6 +6,7 @@ Created on Sat Nov  2 23:12:46 2019
 @author: isadora
 """
 
+import random
 import numpy as np
 import pandas as pd
 from os.path import join
@@ -13,6 +14,7 @@ from datetime import datetime
 from itertools import product
 
 from src.utilities.utils import create_folder, get_files
+from src.classification.motion import MotionDataset
 from src.classification.model_classification import Classification
 
 
@@ -48,7 +50,7 @@ class OPClassification:
 
     def __init__(self, op_values, motion_features, 
                  folder_op, folder_features, 
-                 folder_classification, model, op_features):
+                 folder_classification, model, op_features, n_samples):
         
         self.op_values       = op_values
         self.motion_features = motion_features
@@ -56,6 +58,7 @@ class OPClassification:
         self.folder_features = folder_features
         self.model           = model
         self.op_features     = op_features
+        self.n_samples       = n_samples
                 
         filename = join(folder_classification + "_" + str(datetime.now()), "")
         self.folder_classification = filename       
@@ -88,7 +91,7 @@ class OPClassification:
         # ex: 'distance_D3_t1.csv'
 
         X = pd.DataFrame()
-        y = pd.DataFrame()    
+        y = pd.DataFrame() 
         
         print("### OP features: {}".format(self.op_features))
         
@@ -100,17 +103,33 @@ class OPClassification:
             file_name  = "op_" + transport + "_"
             query      = [file_name + f for f in features_name] 
             op_files   = [self.folder_op + q for q in query]
-                                    
+                                                
             df_transport_op = pd.DataFrame()            
             
             for file in op_files:      
                 op_csv = pd.read_csv(file, usecols = self.op_features)
                 op_csv = op_csv[self.op_features] # to assure order
-
+                
                 # axis = 1 is by column, axis = 0 is by rows
                 concat           = [df_transport_op, op_csv]
                 df_transport_op  = pd.concat(concat, axis = 1, ignore_index = True)
                 df_transport_op  = df_transport_op.dropna()
+                
+                
+                
+            ### motion_features
+            motion = MotionDataset()
+            
+            file_name       = transport + "*" + ".csv"
+            path_transport  = get_files(self.folder_features, file_name, True)
+        
+            feature_df      = motion.build_dataset(self.motion_features, path_transport)
+            
+            concat2         = [df_transport_op, feature_df]
+            df_transport_op = pd.concat(concat2, axis = 1, ignore_index = True) 
+            
+            
+            df_transport_op = df_transport_op[:self.n_samples]            
                 
             # features
             concat1    = [X, df_transport_op]
@@ -120,10 +139,12 @@ class OPClassification:
             op_class   = pd.DataFrame([transport] * len(df_transport_op))
             concat2    = [y, op_class]
             y          = pd.concat(concat2, axis = 0, ignore_index = True) 
-                
+
             
         n = len(X.columns)
+        
         print("#### OP features size: {}".format(n))
+        print("size", len(X), len(y))
         
         return X, y
         
@@ -155,11 +176,11 @@ class OPClassification:
         if "car" in transports or "taxi" in transports:
             y          = y.replace(to_replace = "car", value = "driving")
             y          = y.replace(to_replace = "taxi", value = "driving")
-        
+            
         
         print("TRANSPORTATION MODE: ", transports)
         
-        self._save_dataset(X, y, parameter)
+#         self._save_dataset(X, y, parameter)
         
         return X, y   
     
