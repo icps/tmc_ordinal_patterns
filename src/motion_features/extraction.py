@@ -48,7 +48,7 @@ class MotionFeaturesExtraction:
         
         
         
-    def get_features(self, transportation, folder_segments, folder_features):
+    def get_features(self, transportation, folder_segments, folder_features, motion_features):
         """ Receives the data about the segments, 
         organizes them in a list and extract the features from them, 
         saving it to the chosen folder.
@@ -79,9 +79,10 @@ class MotionFeaturesExtraction:
         
         print("Processing {} segments...".format(len(segment_files)))
         
-        for segment in segment_files:
+        for enum, segment in enumerate(segment_files):
+            print("{} out of {} - {}".format(enum + 1, len(segment_files), segment))
             
-            df_features = GeoLifeFeaturesExtraction.get_features(segment)
+            df_features = GeoLifeFeaturesExtraction.get_features(segment, motion_features)
                                 
             ## save data
             self._save_features(df_features, folder_features, segment)
