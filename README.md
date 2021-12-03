@@ -5,7 +5,9 @@
 Analyzing people’s mobility and identifying the transportation mode is essential for cities to create travel diaries. It can help develop essential technologies to reduce traffic jams and travel time between their points, thus helping to improve the quality of life of citizens. Previous studies in this context extracted many specialized features, reaching hundreds of them. This approach requires domain knowledge. Other strategies focused on deep learning methods, which need intense computational power and more data than traditional methods to train their models. In this work, we propose using information theory quantifiers retained from the ordinal patterns (OPs) transformation for transportation mode identification. Our proposal presents the advantage of using fewer data. OP is also computationally inexpensive and has low dimensionality. It is beneficial for scenarios where it is hard to collect information, such as Internet-of-things contexts. Our results demonstrated that OP features enhance the classification results of standard features in such scenarios.
 
 
-The paper is available at: doi.org/10.1007/s11071-021-07059-x
+The paper is available at: https://doi.org/10.1007/s11071-021-07059-x
+
+
 
 If you find this code useful, please consider citing our paper: 
 
