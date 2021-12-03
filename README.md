@@ -2,19 +2,19 @@
 
 ## Abstract
 
-Analysing people mobility and identifying the transportation mode used by them is essential for cities that want to reduce traffic jams and travel time between their points, thus helping to improve the quality of life of citizens. Mining this type of data, however, faces several complexities due to its unique properties. In this work, we propose the use of Information Theory quantifiers retained from the Ordinal Patterns (OP) transformation, for transportation mode identification. As an initial exploration, our results show that OP satisfactorily characterises the trajectories. Moreover, in this scenario, the characteristics of OP transformation can be advantageous, such as its simplicity, robustness, and speed. 
+Analyzing people’s mobility and identifying the transportation mode is essential for cities to create travel diaries. It can help develop essential technologies to reduce traffic jams and travel time between their points, thus helping to improve the quality of life of citizens. Previous studies in this context extracted many specialized features, reaching hundreds of them. This approach requires domain knowledge. Other strategies focused on deep learning methods, which need intense computational power and more data than traditional methods to train their models. In this work, we propose using information theory quantifiers retained from the ordinal patterns (OPs) transformation for transportation mode identification. Our proposal presents the advantage of using fewer data. OP is also computationally inexpensive and has low dimensionality. It is beneficial for scenarios where it is hard to collect information, such as Internet-of-things contexts. Our results demonstrated that OP features enhance the classification results of standard features in such scenarios.
 
 
-The paper is available at: https://arxiv.org/abs/2007.08687
+The paper is available at: doi.org/10.1007/s11071-021-07059-x
 
 If you find this code useful, please consider citing our paper: 
 
 ```
 @article{cardoso2020leveraging,
-  title={Leveraging the Self-Transition Probability of Ordinal Pattern Transition Graph for Transportation Mode Classification},
+  title={Leveraging the self-transition probability of ordinal patterns transition network for transportation mode identification based on GPS data},
   author={Cardoso-Pereira, I and Borges, JB and Barros, PH and Loureiro, AF and Rosso, OA and Ramos, HS},
-  journal={arXiv preprint arXiv:2007.08687},
-  year={2020}}
+  journal={Nonlinear Dynamics},
+  year={2021}}
 ```
 
 ## Framework Overview
