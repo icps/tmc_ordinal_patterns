@@ -216,7 +216,7 @@ class OPTransformation:
                 transition_matrix.loc[[row], [col]] = previous_value + 1
                 
         if normalized == True:
-            transition_matrix = transition_matrix/transition_matrix.sum()
+            transition_matrix = transition_matrix/sum(transition_matrix.sum())
             
         return transition_matrix
     
